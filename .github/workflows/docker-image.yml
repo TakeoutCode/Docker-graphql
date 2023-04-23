@@ -15,9 +15,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with: 
-        fetch-deph: 0
-        
+      with:
+        fetch-depth: 0
+    
     - name: Git Semantic Version
       uses: PaulHatch/semantic-version@v4.0.3
       with:
@@ -26,8 +26,8 @@ jobs:
         format: "${major}.${minor}.${patch}-prerelease${increment}"
       id: version
         
-    - name: Docker login
-      env: 
+    - name: Docker Login
+      env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         NEW_VERSION: ${{ steps.version.outputs.version }}
